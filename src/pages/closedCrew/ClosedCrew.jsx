@@ -2,10 +2,12 @@ import React from "react";
 import { CrewListItem } from "../../components/crewListItem/CrewListItem";
 import { CLOSED_CREW_LIST } from "../../../public/constants/constants";
 import styled from "styled-components";
+import { ToHomeButton } from "../../components/toHomeButton/ToHomeButton";
 
 export const ClosedCrew = () => {
   return (
     <Container>
+      <ToHomeButton />
       {CLOSED_CREW_LIST.map((crew) => (
         <CrewListItem
           id={crew.id}
