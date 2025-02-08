@@ -4,6 +4,7 @@ import { Onboarding } from "../pages/onboarding/Onboarding";
 import { Home } from "../pages/home/Home";
 import { Signup } from "../pages/signup/Signup";
 import { Login } from "../pages/login/login";
+import { MyPage } from "../pages/myPage/MyPage";
 import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
 import { Review } from "../pages/mypage/crewdetail/review/Review";
 import { Create } from "../pages/create/Create";
@@ -17,6 +18,8 @@ const router = createBrowserRouter([
       { path: "", element: <Onboarding /> },
       { path: "signup", element: <Signup /> },
       { path: "login", element: <Login /> },
+      { path: "home", element: <Home /> },
+      { path: "mypage", element: <MyPage /> },
       { path: "home", element: <Home /> }, 
        { path: "signup", element: <Signup /> },
       { path: "review", element: <Review />},
