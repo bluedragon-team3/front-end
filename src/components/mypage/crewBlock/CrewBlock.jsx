@@ -27,6 +27,12 @@ const Container = styled.div`
 
   text-align: center;
   word-break: keep-all;
+
+  &:hover {
+    background: #1a3f47;
+    color: #1a3f47;
+    transition: 1s;
+  }
 `;
 
 const Title = styled.p`
