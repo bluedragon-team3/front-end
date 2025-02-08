@@ -5,6 +5,8 @@ import { Home } from "../pages/home/Home";
 import { Signup } from "../pages/signup/Signup";
 import { Login } from "../pages/login/login";
 import { MyPage } from "../pages/myPage/MyPage";
+import { ClosedCrew } from "../pages/closedCrew/ClosedCrew";
+import { OpenedCrew } from "../pages/openedCrew/OpenedCrew";
 import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
 import { Review } from "../pages/mypage/crewdetail/review/Review";
 import { Create } from "../pages/create/Create";
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "home", element: <Home /> },
       { path: "mypage", element: <MyPage /> },
+      { path: "closed-crew", element: <ClosedCrew /> },
+      { path: "opened-crew", element: <OpenedCrew /> },
       { path: "home", element: <Home /> }, 
        { path: "signup", element: <Signup /> },
       { path: "review", element: <Review />},
