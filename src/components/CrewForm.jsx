@@ -2,47 +2,86 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export const CrewForm = ({ title, button1Text, button1Action, button2Text, button2Action }) => {
-  const [category, setCategory] = useState("");
+export const CrewForm = ({ title, button1Text, button1Action }) => {
+  const [crewName, setCrewName] = useState(""); // 소모임 이름
+  const [category, setCategory] = useState(""); // 카테고리
+  const [limit, setLimit] = useState(""); // 인원 제한
+  const [startDate, setStartDate] = useState(""); // 소모임 시작일
+  const [endDate, setEndDate] = useState(""); // 소모임 종료일
+  const [description, setDescription] = useState(""); // 한 줄 설명
+  const [curriculum, setCurriculum] = useState(""); // 커리큘럼
+
+  // 폼 제출 핸들러 (백엔드 연동)
+  const handleSubmit = async () => {
+    const formData = {
+      crewName,
+      category,
+      limit,
+      startDate,
+      endDate,
+      description,
+      curriculum,
+    };
+
+    console.log("보낼 데이터:", formData); // 확인용
+
+    try {
+      const response = await fetch("https://your-backend-api.com/crew", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("소모임이 성공적으로 생성되었습니다!");
+        button1Action(); // 성공 시 버튼 액션 실행
+      } else {
+        alert("소모임 생성 실패");
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+      alert("서버 오류");
+    }
+  };
+
   return (
     <Container>
       <Card>
-        <Title>{title}</Title>
+        <Label>소모임 이름</Label>
+        <Input type="text" value={crewName} onChange={(e) => setCrewName(e.target.value)} />
 
-        <Label>
-          카테고리 &ensp;
-          <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="" disabled>
-              선택하세요
-            </option>
-            <option value="study">스터디</option>
-            <option value="hobby">취미</option>
-            <option value="exercise">운동</option>
-            <option value="etc">기타</option>
-          </CategorySelect>
-        </Label>
+        <Label>카테고리</Label>
+        <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="" disabled>선택하세요</option>
+          <option value="study">스터디</option>
+          <option value="hobby">취미</option>
+          <option value="exercise">운동</option>
+          <option value="etc">기타</option>
+        </CategorySelect>
 
         <Label>인원 수 제한</Label>
-        <Input type="number" />
+        <Input type="number" value={limit} onChange={(e) => setLimit(e.target.value)} />
 
         <Label>소모임 기간</Label>
-        <Input type="text" placeholder="소모임 시작" />
-        <Input type="text" placeholder="소모임 종료" />
+        <Input type="text" placeholder="소모임 시작" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        <Input type="text" placeholder="소모임 종료" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 
         <Label>소모임 한줄 설명</Label>
-        <Input type="text" />
+        <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
 
         <Label>커리큘럼</Label>
-        <textarea name="postContent" defaultValue="" rows={4} cols={40} />
+        <textarea name="postContent" value={curriculum} onChange={(e) => setCurriculum(e.target.value)} rows={4} cols={40} />
       </Card>
 
       <ButtonGroup>
-        <Button onClick={button1Action}>{button1Text}</Button>
-        <Button onClick={button2Action}>{button2Text}</Button>
+        <Button onClick={handleSubmit}>{button1Text}</Button>
       </ButtonGroup>
     </Container>
   );
 };
+
 
 
 const Container = styled.div`

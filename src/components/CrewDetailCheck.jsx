@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export const CrewForm = ({ title, button1Text, button1Action, button2Text, button2Action }) => {
+export const CrewDetailCheck = ({ title, button1Text, button1Action, button2Text, button2Action }) => {
   const [category, setCategory] = useState("");
   return (
     <Container>
@@ -10,36 +10,26 @@ export const CrewForm = ({ title, button1Text, button1Action, button2Text, butto
         <Title>{title}</Title>
 
         <Label>
-          카테고리 &ensp;
-          <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="" disabled>
-              선택하세요
-            </option>
-            <option value="study">스터디</option>
-            <option value="hobby">취미</option>
-            <option value="exercise">운동</option>
-            <option value="etc">기타</option>
-          </CategorySelect>
+            카테고리 <CategoryButton>Category</CategoryButton>
         </Label>
 
+
         <Label>인원 수 제한</Label>
-        <Input type="number" />
+        <ReadOnlyBox> </ReadOnlyBox>
 
         <Label>소모임 기간</Label>
-        <Input type="text" placeholder="소모임 시작" />
-        <Input type="text" placeholder="소모임 종료" />
+        <ReadOnlyBox> </ReadOnlyBox>
+        <ReadOnlyBox> </ReadOnlyBox>
+
 
         <Label>소모임 한줄 설명</Label>
-        <Input type="text" />
+        <ReadOnlyBox> </ReadOnlyBox>
 
         <Label>커리큘럼</Label>
-        <textarea name="postContent" defaultValue="" rows={4} cols={40} />
+        <ReadOnlyBox> </ReadOnlyBox>
       </Card>
 
-      <ButtonGroup>
-        <Button onClick={button1Action}>{button1Text}</Button>
-        <Button onClick={button2Action}>{button2Text}</Button>
-      </ButtonGroup>
+      
     </Container>
   );
 };
@@ -78,19 +68,8 @@ const Label = styled.label`
   font-weight: bold;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-`;
+
 
 const Button = styled.button`
   flex: 1;
@@ -108,20 +87,30 @@ const Button = styled.button`
     background-color: #145055;
   }
 `;
-
-const CategorySelect = styled.select`
-  padding: 8px;
+const CategoryButton = styled.button`
+  padding: 8px 12px;
   border: none;
   border-radius: 10px;
   background-color: #5d4b82;
   color: white;
   font-size: 16px;
   cursor: pointer;
+  margin-left: 10px; /* 카테고리 텍스트와 버튼 사이 간격 조절 */
+
   &:hover {
     background-color: #4a3a69;
   }
-  option {
-    background: white;
-    color: black;
-  }
+`;
+
+const ReadOnlyBox = styled.div` //서버에서 가져온 데이터 표시하는 박스
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+  color: #333;
+  min-height: 40px; /* 최소 높이 설정 */
+  line-height: 1.5;
+  white-space: pre-wrap; /* 줄바꿈 허용 */
 `;

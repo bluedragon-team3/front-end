@@ -4,9 +4,10 @@ import { Onboarding } from "../pages/onboarding/Onboarding";
 import { Home } from "../pages/home/Home";
 import { Signup } from "../pages/signup/Signup";
 import { Login } from "../pages/login/login";
-import { Signup } from "../pages/signup/Signup";
 import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
 import { Review } from "../pages/mypage/crewdetail/review/Review";
+import { Create } from "../pages/create/Create";
+import { Apply } from "../pages/openedCrew/apply/Apply";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,13 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "home", element: <Home /> }, 
        { path: "signup", element: <Signup /> },
-      { path: "crewdetail", element: <CrewDetail />},
       { path: "review", element: <Review />},
+      { path: "create", element: <Create />},
+
+      //바꿔야할 라우트
+      { path: "crewdetail", element: <CrewDetail />},
+      { path: "apply", element: <Apply />},
+
     ],
 
   },
