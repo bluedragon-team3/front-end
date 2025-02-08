@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const CrewBlock = ({ title, category }) => {
+const CrewBlock = ({ title, category, onClick }) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Title>{title}</Title>
       <Category>카테고리: {category}</Category>
     </Container>

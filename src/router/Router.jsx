@@ -7,7 +7,7 @@ import { Login } from "../pages/login/login";
 import { MyPage } from "../pages/myPage/MyPage";
 import { ClosedCrew } from "../pages/closedCrew/ClosedCrew";
 import { OpenedCrew } from "../pages/openedCrew/OpenedCrew";
-import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
+import { CrewDetail } from "../pages/myPage/crewDetail/CrewDetail";
 import { Create } from "../pages/create/Create";
 import { Apply } from "../pages/openedCrew/apply/Apply";
 import { Detail } from "../pages/detail/Detail";

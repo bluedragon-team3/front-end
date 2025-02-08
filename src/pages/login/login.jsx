@@ -19,6 +19,8 @@ export const Login = () => {
       .post(`${baseURL}/user/login`, formData)
       .then((res) => {
         console.log(res.data);
+        //유저 정보 로컬스토리지에 저장
+        //id, signId, name, studnetNumber
       })
       .catch((error) => {
         alert("로그인에 실패하셨습니다!!");

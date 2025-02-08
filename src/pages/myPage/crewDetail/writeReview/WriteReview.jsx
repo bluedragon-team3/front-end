@@ -1,12 +1,31 @@
 import React, { useState } from "react";
 import { BackArrow } from "../../../../components/backArrow/BackArrow";
 import styled from "styled-components";
+import axios from "axios";
+import { baseURL } from "../../../../constants/constants";
 
 export const WriteReview = () => {
   const [text, setText] = useState("");
 
   const onChange = (e) => {
     setText(e.target.value);
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`${baseURL}/review`, {
+        content: text,
+        groupId: localStorage.getItem("groupId"),
+        userId: localStorage.getItem("userId"),
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("저장이 성공함!!");
+      })
+      .catch((error) => {
+        alert("에러가 발생함!!", error);
+      });
   };
 
   return (
@@ -23,7 +42,7 @@ export const WriteReview = () => {
         <Text onChange={onChange}>
           여기에 작성해주세요!! 예제도 보여드릴까요?
         </Text>
-        <Button>작성 완료</Button>
+        <Button onClick={onSubmit}>작성 완료</Button>
       </TextContainer>
     </Container>
   );

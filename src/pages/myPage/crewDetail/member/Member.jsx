@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BackArrow } from "../../../../components/backArrow/BackArrow";
 import styled from "styled-components";
 import { MemberItem } from "./components/memberItem";
+import axios from "axios";
+import { baseURL } from "../../../../constants/constants";
 
-const members = [
+/*const members = [
   { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
   { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
   { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
   { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
   { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-];
+];*/
 
 export const Member = () => {
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/mypage/${localStorage.getItem("groupId")}/studyMate`)
+      .then((res) => {
+        setMembers(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  });
+
   return (
     <Container>
       <Header>
@@ -21,10 +37,10 @@ export const Member = () => {
       {members.map((each) => (
         <MemberItem
           key={each.id}
-          id={each.id}
+          id={each.signId}
           name={each.name}
-          gender={each.gender}
-          studentId={each.studentId}
+          gender={each.sex === "FEMALE" ? "여" : "남"}
+          studentId={each.studentNumber}
         />
       ))}
     </Container>
