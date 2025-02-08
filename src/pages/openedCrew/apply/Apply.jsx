@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {CrewDetailCheck} from "../../../components/CrewDetailCheck";
 import { BackArrow } from "../../../components/backArrow/BackArrow";
 
+import axios from "axios";
+
 export const Apply = () => {
+      const [crewDetails, setCrewDetails] = useState();
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      axios.get(`http://175.120.73.56:9090/group/${localStorage.getItem("groupId")}`)
+            .then((response) => {
+              setCrewDetails(response.data); // Set the fetched crew details
+            })
+            .catch((error) => {
+              //console.error("Error fetching crew details:", error);
+            });
+        
+      
+  },[]);
+
     return (
 
     <>
@@ -17,8 +33,14 @@ export const Apply = () => {
         <ContentWrapper>
         <CrewDetailCheck
             title="소모임 제목"
-            isReviewed={true}
-            />
+            isReviewed={crewDetails.isReviewed} // Assuming the "isReviewed" property is part of the response
+            category={crewDetails.category} 
+            memberLimit={crewDetails.memberLimit}
+            startdate={crewDetails.startdate}
+            finishdate={crewDetails.finishdate}
+            description={crewDetails.description}
+            curriculum={crewDetails.curriculum}
+            review={crewDetails.review}            />
         </ContentWrapper>
 
             <ButtonGroup>
