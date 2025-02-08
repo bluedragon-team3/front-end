@@ -27,9 +27,9 @@ export const MyPage = () => {
       </Header>
 
       <Infos>
-        <Description>id: {info.id}</Description>
-        <Description>이름: {info.name}</Description>
-        <Description>학번: {info.studentId}</Description>
+        <InfoText>id: {info.id}</InfoText>
+        <InfoText>이름: {info.name}</InfoText>
+        <InfoText>학번: {info.studentId}</InfoText>
       </Infos>
 
       <TitleBlock>내가 관리 중인 소모임</TitleBlock>
@@ -72,7 +72,7 @@ const Infos = styled.div`
 
   width: 100%;
 `;
-const Description = styled.p`
+const InfoText = styled.p`
   position: relative;
 
   margin: 0;
