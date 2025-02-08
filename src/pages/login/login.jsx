@@ -46,7 +46,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const login = () => {
+export const Login = () => {
 
   return (
     <Container>

@@ -1,6 +1,49 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+export const CrewDetail = () => {
+  const [category, setCategory] = useState("");
+
+  return (
+    <Container>
+      <Card>
+        <Title>소모임 제목</Title>
+
+        <Label>
+          카테고리 &ensp;
+          <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="" disabled>
+              선택하세요
+            </option>
+            <option value="study">스터디</option>
+            <option value="hobby">취미</option>
+            <option value="exercise">운동</option>
+            <option value="etc">기타</option>
+          </CategorySelect>
+        </Label>
+
+        <Label>인원 수 제한</Label>
+        <Input type="number" />
+
+        <Label>소모임 기간</Label>
+        <Input type="text" placeholder="소모임 시작" />
+        <Input type="text" placeholder="소모임 종료" />
+
+        <Label>소모임 한줄 설명</Label>
+        <Input type="text" />
+
+        <Label>커리큘럼</Label>
+        <Input type="text" />
+
+        <ButtonGroup>
+          <Button>스터디 종료</Button>
+          <Button>스터디원</Button>
+        </ButtonGroup>
+      </Card>
+    </Container>
+  );
+};
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -58,10 +101,8 @@ const Button = styled.button`
   }
 `;
 
-const CategoryButton = styled.button`
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+const CategorySelect = styled.select`
+  padding: 8px;
   border: none;
   border-radius: 10px;
   background-color: #5d4b82;
@@ -72,39 +113,10 @@ const CategoryButton = styled.button`
   &:hover {
     background-color: #4a3a69;
   }
+
+  option {
+    background: white;
+    color: black;
+  }
 `;
-export const CrewDetail = () => {
-  return (
-    <Container>
-      <Card>
-        <Title>소모임 제목</Title>
 
-        <Label>카테고리</Label>
-        <CategoryButton>Category</CategoryButton>
-
-        <Label>인원 수 제한</Label>
-        <Input type="number" />
-
-        <Label>소모임 기간</Label>
-        <Input type="text" placeholder="소모임 시작" />
-        <Input type="text" placeholder="소모임 종료" />
-
-        <Label>소모임 한줄 설명</Label>
-        <Input type="text" />
-
-        <Label>커리큘럼</Label>
-        <Input type="text" />
-
-        <ButtonGroup>
-          <Button>스터디 종료</Button>
-          <Button>스터디원</Button>
-        </ButtonGroup>
-      </Card>
-    </Container>
-  );
-};
-
-
-
-
-//export default CrewDetail;
