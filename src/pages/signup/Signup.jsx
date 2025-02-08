@@ -1,6 +1,81 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { baseURL } from "../../constants/constants";
 
+export const Signup = () => {
+  const [name, setName] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [signId, setSignId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onStudentIdChange = (e) => setStudentId(e.target.value);
+  const onNameChange = (e) => setName(e.target.value);
+  const onEmailChange = (e) => setEmail(e.target.value);
+  const onSignIdChange = (e) => setSignId(e.target.value);
+  const onPasswordChange = (e) => setPassword(e.target.value);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("signId", signId);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("gender", gender);
+    formData.append("studentNumber", studentId);
+    axios
+      .post(`${baseURL}/user/register`, formData)
+      .then((res) => {
+        console.log(res.data);
+        alert("회원가입에 성공하셨습니다.");
+      })
+      .catch((error) => {
+        alert("회원가입에 실패하셨습니다!!");
+      });
+  };
+
+  return (
+    <Container>
+      <Title>회원가입</Title>
+      <Label>이름</Label>
+      <Input type="text" onChange={onNameChange} />
+
+      <Label>학번</Label>
+      <Input type="text" onChange={onStudentIdChange} />
+
+      <Label>성별</Label>
+      <GenderContainer>
+        <GenderButton
+          selected={gender === "FEMALE"}
+          onClick={() => setGender("FEMALE")}
+        >
+          여
+        </GenderButton>
+        <GenderButton
+          selected={gender === "MALE"}
+          onClick={() => setGender("MALE")}
+        >
+          남
+        </GenderButton>
+      </GenderContainer>
+
+      <Label>아이디</Label>
+      <Input type="text" onChange={onSignIdChange} />
+
+      <Label>비밀번호</Label>
+      <Input type="password" onChange={onPasswordChange} />
+
+      <Label>이메일</Label>
+      <Input type="text" onChange={onEmailChange} />
+
+      <Button onClick={onSubmit}>회원가입</Button>
+    </Container>
+  );
+};
 const Container = styled.div`
   width: 90%;
   height: 100vh;
@@ -10,7 +85,6 @@ const Container = styled.div`
   background: #fff;
   text-align: center;
   margin: 0 auto;
-
 `;
 
 const Title = styled.h2`
@@ -60,35 +134,3 @@ const Button = styled.button`
   font-size: 16px;
   cursor: pointer;
 `;
-
-export const Signup = () => {
-  const [gender, setGender] = useState("");
-
-  return (
-    <Container>
-      <Title>회원가입</Title>
-      <Label>이름</Label>
-      <Input type="text" />
-      
-      <Label>나이</Label>
-      <Input type="number" />
-
-      <Label>성별</Label>
-      <GenderContainer>
-        <GenderButton selected={gender === "여"} onClick={() => setGender("여")}>여</GenderButton>
-        <GenderButton selected={gender === "남"} onClick={() => setGender("남")}>남</GenderButton>
-      </GenderContainer>
-
-      <Label>아이디</Label>
-      <Input type="text" />
-
-      <Label>비밀번호</Label>
-      <Input type="password" />
-
-      <Label>이메일</Label>
-      <Input type="email" />
-
-      <Button>회원가입</Button>
-    </Container>
-  );
-};
