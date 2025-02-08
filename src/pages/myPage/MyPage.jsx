@@ -4,18 +4,18 @@ import CrewBlock from "../../components/crewBlock/CrewBlock";
 
 const info = { id: "iddd", name: "정보운", studentId: "20222222" };
 const crewList = [
-  { title: "멋진 알고리즘 스터디", category: "컴공" },
-  { title: "농구 스터디", category: "체육" },
-  { title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
-  { title: "스터디", category: "컴공컴공컴공" },
-  { title: "멋진 알고리즘 스터디", category: "컴공" },
-  { title: "농구 스터디", category: "체육" },
-  { title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
-  { title: "스터디", category: "컴공컴공컴공" },
-  { title: "멋진 알고리즘 스터디", category: "컴공" },
-  { title: "농구 스터디", category: "체육" },
-  { title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
-  { title: "스터디", category: "컴공컴공컴공" },
+  { id: 0, title: "멋진 알고리즘 스터디", category: "컴공" },
+  { id: 1, title: "농구 스터디", category: "체육" },
+  { id: 2, title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
+  { id: 3, title: "스터디", category: "컴공컴공컴공" },
+  { id: 4, title: "멋진 알고리즘 스터디", category: "컴공" },
+  { id: 5, title: "농구 스터디", category: "체육" },
+  { id: 6, title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
+  { id: 7, title: "스터디", category: "컴공컴공컴공" },
+  { id: 8, title: "멋진 알고리즘 스터디", category: "컴공" },
+  { id: 9, title: "농구 스터디", category: "체육" },
+  { id: 10, title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
+  { id: 11, title: "스터디", category: "컴공컴공컴공" },
 ];
 
 export const MyPage = () => {
@@ -35,7 +35,11 @@ export const MyPage = () => {
       <TitleBlock>내가 관리 중인 소모임</TitleBlock>
       <CrewContainer>
         {crewList.map((each) => (
-          <CrewBlock title={each.title} category={each.category} />
+          <CrewBlock
+            key={each.id}
+            title={each.title}
+            category={each.category}
+          />
         ))}
       </CrewContainer>
     </Container>
