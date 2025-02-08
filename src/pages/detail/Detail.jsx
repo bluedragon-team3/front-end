@@ -1,43 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {CrewDetailCheck} from "../../../components/CrewDetailCheck"; // CrewDetailCheck 을 import
+import {CrewDetailCheck} from "../../components/CrewDetailCheck"
+import { BackArrow } from "../../components/backArrow/BackArrow";
 
-
-export const CrewDetail = () => {
+export const Detail = () => {
     const navigate = useNavigate();
     return (
 
     <>
-    <container>
+        <Header>
+            <BackArrow />
+            <Label>기록 열람</Label>
+        </Header>
         <CrewDetailCheck
             title="소모임 제목"
-            isReviewed={false}
-        />
+            isReviewed={true}
+            />
             <ButtonGroup>
                 <Button onClick={() => navigate("/study-end")}>스터디 종료</Button>
                 <Button onClick={() => navigate("/members")}>스터디원</Button>
             </ButtonGroup>
-    </container>
-
     </>
 
       
     );
     
   };
-
-  const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 0 4rem;
-  height: inherit;
-  background-color: #f8f8f8;
-`;
-
 
   const ButtonGroup = styled.div`
   display: flex;
@@ -59,4 +48,15 @@ const Button = styled.button`
   &:hover {
     background-color: #145055;
   }
+`;
+const Header = styled.div`
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  padding: 20px 0;
+`;
+const Label = styled.label`
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
 `;

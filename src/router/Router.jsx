@@ -9,6 +9,7 @@ import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
 import { Review } from "../pages/mypage/crewdetail/review/Review";
 import { Create } from "../pages/create/Create";
 import { Apply } from "../pages/openedCrew/apply/Apply";
+import { Detail } from "../pages/detail/Detail";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
        { path: "signup", element: <Signup /> },
       { path: "review", element: <Review />},
       { path: "create", element: <Create />},
+      { path: "detail", element: <Detail />},
 
       //바꿔야할 라우트
       { path: "crewdetail", element: <CrewDetail />},

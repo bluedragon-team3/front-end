@@ -2,37 +2,39 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export const CrewDetailCheck = ({ title, button1Text, button1Action, button2Text, button2Action }) => {
-  const [category, setCategory] = useState("");
-  return (
-    <Container>
-      <Card>
-        <Title>{title}</Title>
+export const CrewDetailCheck = ({ title, isReviewed, category, memberLimit, startdate,finishdate, description, curriculum,review }) => {
+    return (
+      <Container>
+        <Card>
+          <Title>{title}</Title>
+  
+          <Label>
+            카테고리 <CategoryButton>{category || "Category"}</CategoryButton>
+          </Label>
+  
+          <Label>인원 수 제한</Label>
+          <ReadOnlyBox>{memberLimit}</ReadOnlyBox>
+  
+          <Label>소모임 기간</Label>
+          <ReadOnlyDate>{startdate}</ReadOnlyDate>
+          <ReadOnlyDate>{finishdate}</ReadOnlyDate>
+  
+          <Label>소모임 한줄 설명</Label>
+          <ReadOnlyBox>{description}</ReadOnlyBox>
+  
+          <Label>커리큘럼</Label>
+          <ReadOnlyBox>{curriculum}</ReadOnlyBox>
+  
+          {isReviewed && <Label>
+            회고록
+            <ReadOnlyBox>{review}</ReadOnlyBox>
+            </Label>}
 
-        <Label>
-            카테고리 <CategoryButton>Category</CategoryButton>
-        </Label>
-
-
-        <Label>인원 수 제한</Label>
-        <ReadOnlyBox> </ReadOnlyBox>
-
-        <Label>소모임 기간</Label>
-        <ReadOnlyBox> </ReadOnlyBox>
-        <ReadOnlyBox> </ReadOnlyBox>
-
-
-        <Label>소모임 한줄 설명</Label>
-        <ReadOnlyBox> </ReadOnlyBox>
-
-        <Label>커리큘럼</Label>
-        <ReadOnlyBox> </ReadOnlyBox>
-      </Card>
-
-      
-    </Container>
-  );
-};
+        </Card>
+      </Container>
+    );
+  };
+  
 
 
 const Container = styled.div`
@@ -59,7 +61,7 @@ const Card = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  color: #6a6a6a;
+  color:rgb(0, 0, 0);
 `;
 
 const Label = styled.label`
@@ -71,22 +73,6 @@ const Label = styled.label`
 
 
 
-const Button = styled.button`
-  flex: 1;
-  width: 140px;
-  height: 50px;
-  padding: 10px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 10px;
-  background-color: #173f41;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  &:hover {
-    background-color: #145055;
-  }
-`;
 const CategoryButton = styled.button`
   padding: 8px 12px;
   border: none;
@@ -102,6 +88,17 @@ const CategoryButton = styled.button`
   }
 `;
 
+const ReadOnlyDate = styled.div` //서버에서 가져온 데이터 표시하는 박스
+  width: 40%;
+  padding: 0 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+  color: #333;
+  min-height: 30px; /* 최소 높이 설정 */
+  line-height: 1.5;
+`;
 const ReadOnlyBox = styled.div` //서버에서 가져온 데이터 표시하는 박스
   width: 100%;
   padding: 8px;
