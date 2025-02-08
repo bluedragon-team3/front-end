@@ -5,7 +5,9 @@ export const CrewListItem = ({ id, title, category, content }) => {
   return (
     <Container
       onClick={() => {
-        console.log("id는:", id);
+       //console.log("id는:", id);
+        //로컬스토리지에 id 저장 
+        localStorage.setItem("groupId", id);
       }}
     >
       <Title>{title}</Title>
