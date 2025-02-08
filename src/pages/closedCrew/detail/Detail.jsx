@@ -59,11 +59,6 @@ export const Detail = () => {
           })}
         />
       </ContentWrapper>
-
-      <ButtonGroup>
-        <Button onClick={() => navigate("/study-end")}>스터디 종료</Button>
-        <Button onClick={() => navigate("/members")}>스터디원</Button>
-      </ButtonGroup>
     </>
   );
 };

@@ -11,12 +11,15 @@ export const CrewDetail = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`${baseURL}/mypage/${localStorage.getItem("groupId")}`)
+      .get(`http://${baseURL}/mypage/${localStorage.getItem("groupId")}/`)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setCrewDetail(res.data);
+      })
+      .catch((error) => {
+        alert(error);
       });
-  });
+  }, []);
   return (
     <>
       <Header>
@@ -25,16 +28,16 @@ export const CrewDetail = () => {
 
       <container>
         <CrewDetailCheck
-          title={crewDetail.name}
-          isReviewed={false}
-          category={crewDetail.category}
-          memberLimit={crewDetail.peopleLimit}
-          startdate={crewDetail.startDate}
-          finishdate={crewDetail.finishDate}
-          description={crewDetail.detail}
-          curriculum={crewDetail.curriculum}
+          title={crewDetail?.name}
+          isReviewed={crewDetail?.isEnded} // Assuming the "isReviewed" property is part of the response
+          category={crewDetail?.category}
+          memberLimit={crewDetail?.peopleLimit}
+          startdate={crewDetail?.startDate}
+          finishdate={crewDetail?.finishDate}
+          description={crewDetail?.detail}
+          curriculum={crewDetail?.curriculum}
         />
-        {crewDetail.owner.id === crewDetail.id && (
+        {crewDetail?.owner.id === crewDetail?.id && (
           <ButtonGroup>
             <Button onClick={() => navigate("/mypage/crewdetail/write-review")}>
               스터디 종료

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BackArrow } from "../../../../components/backArrow/BackArrow";
 import styled from "styled-components";
 import { MemberItem } from "./components/memberItem";
@@ -10,7 +10,9 @@ export const Member = () => {
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/mypage/${localStorage.getItem("groupId")}/studyMate`)
+      .get(
+        `http://${baseURL}/mypage/${localStorage.getItem("groupId")}/studyMate/`
+      )
       .then((res) => {
         setMembers(res.data);
         console.log(res.data);
@@ -18,7 +20,7 @@ export const Member = () => {
       .catch((error) => {
         alert(error);
       });
-  });
+  }, []);
 
   return (
     <Container>
