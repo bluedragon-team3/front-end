@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import MyPageButton from "../../components/mypage/MyPageButton";
+import CrewBlock from "../../components/mypage/crewBlock/CrewBlock";
+
+const crewList = [
+  { title: "멋진 알고리즘 스터디", category: "컴공" },
+  { title: "농구 스터디", category: "체육" },
+  { title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
+];
 
 export const Home = () => {
   return (
@@ -10,6 +17,11 @@ export const Home = () => {
         </Title>
         <MyPageButton />
       </Header>
+      <div>
+        {crewList.map((each) => (
+          <CrewBlock title={each.title} category={each.category} />
+        ))}
+      </div>
     </Container>
   );
 };
