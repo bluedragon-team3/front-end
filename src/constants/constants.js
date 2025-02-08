@@ -29,3 +29,5 @@ export const OPENED_CREW_LIST = [
   { id: 5, title: "title6", category: "cate1", content: "설명" },
   { id: 6, title: "title7", category: "cate1", content: "설명" },
 ];
+
+export const baseURL = "175.120.73.56:9090";

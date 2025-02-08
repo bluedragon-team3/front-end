@@ -2,15 +2,25 @@ import styled from "styled-components";
 import MyPageButton from "../../components/mypage/MyPageButton";
 import CrewBlock from "../../components/crewBlock/CrewBlock";
 import LinkButton from "./components/linkButton";
-
-const crewList = [
-  { title: "멋진 알고리즘 스터디", category: "컴공" },
-  { title: "농구 스터디", category: "체육" },
-  { title: "ㅇㅇㅇㅇ", category: "컴퓨터공학과쪽임" },
-  { title: "스터디", category: "컴공컴공컴공" },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { baseURL } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
+  const [crewList, setCrewList] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get(`http://${baseURL}/home/`)
+      .then((res) => {
+        setCrewList(res.data);
+      })
+      .catch((error) => {
+        alert("홈에서 받아오는거 안되는데???");
+      });
+  }, []);
   return (
     <Container>
       <Header>
@@ -21,15 +31,37 @@ export const Home = () => {
       </Header>
       <CrewsGrid>
         {crewList.map((each) => (
-          <CrewBlock title={each.title} category={each.category} />
+          <CrewBlock
+            key={each.id}
+            title={each.name}
+            category={each.category}
+            onClick={() => {
+              navigate("/opened-crew");
+            }}
+          />
         ))}
       </CrewsGrid>
       <ButtonContainer>
         이동하기
         <Buttons>
-          <LinkButton content={"기록열람"} />
-          <LinkButton content={"소모임 참여하러 가기"} />
-          <LinkButton content={"소모임 생성"} />
+          <LinkButton
+            content={"기록열람"}
+            onClick={() => {
+              navigate("/closed-crew");
+            }}
+          />
+          <LinkButton
+            content={"소모임 참여하러 가기"}
+            onClick={() => {
+              navigate("/opened-crew");
+            }}
+          />
+          <LinkButton
+            content={"소모임 생성"}
+            onClick={() => {
+              navigate("/create");
+            }}
+          />
         </Buttons>
       </ButtonContainer>
     </Container>

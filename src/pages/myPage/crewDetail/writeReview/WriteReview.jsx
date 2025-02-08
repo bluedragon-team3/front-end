@@ -1,12 +1,43 @@
 import React, { useState } from "react";
 import { BackArrow } from "../../../../components/backArrow/BackArrow";
 import styled from "styled-components";
+import axios from "axios";
+import { baseURL } from "../../../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export const WriteReview = () => {
   const [text, setText] = useState("");
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setText(e.target.value);
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`http://${baseURL}/review/`, {
+        content: text,
+        groupId: localStorage.getItem("groupId"),
+        userId: localStorage.getItem("id"),
+      })
+      .then((res) => {
+        alert("저장이 성공함!!");
+        navigate("");
+      })
+      .catch((error) => {
+        alert("에러가 발생함!!", error);
+      });
+
+    axios
+      .post(`http://${baseURL}/group/${localStorage.getItem("groupId")}/owner/`)
+      .then((res) => {
+        alert("저장이 성공함!!");
+        navigate("");
+      })
+      .catch((error) => {
+        alert("에러가 발생함!!", error);
+      });
   };
 
   return (
@@ -20,10 +51,8 @@ export const WriteReview = () => {
         남겨주고 싶은 팁을 작성해주세요!
       </Content>
       <TextContainer>
-        <Text onChange={onChange}>
-          여기에 작성해주세요!! 예제도 보여드릴까요?
-        </Text>
-        <Button>작성 완료</Button>
+        <Text onChange={onChange}>여기에 작성해주세요!!</Text>
+        <Button onClick={onSubmit}>작성 완료</Button>
       </TextContainer>
     </Container>
   );

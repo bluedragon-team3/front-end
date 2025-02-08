@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const CrewBlock = ({ title, category }) => {
+const CrewBlock = ({ title, category, onClick }) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Title>{title}</Title>
       <Category>카테고리: {category}</Category>
     </Container>
@@ -52,4 +52,9 @@ const Title = styled.p`
 
 const Category = styled.p`
   margin: 0;
+  width: 90%;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

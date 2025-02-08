@@ -1,24 +1,24 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CrewListItem } from "../../components/crewListItem/CrewListItem";
 import styled from "styled-components";
 import { ToHomeButton } from "../../components/toHomeButton/ToHomeButton";
 import MyPageButton from "../../components/mypage/MyPageButton";
-import { CLOSED_CREW_LIST } from "../../constants/constants";
+import { baseURL, CLOSED_CREW_LIST } from "../../constants/constants";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const ClosedCrew = () => {
+  const navigate = useNavigate();
   const [crewList, setCrewList] = useState([]);
 
   useEffect(() => {
     axios
-    .get("")
-    .then((response) => {
-      setCrewList(response.data);
-    })
-    .catch((error) => {
-
-    });
+      .get(`http://${baseURL}/review/`)
+      .then((response) => {
+        setCrewList(response.data);
+      })
+      .catch((error) => {});
   }, []);
 
   return (
@@ -32,10 +32,13 @@ export const ClosedCrew = () => {
         {crewList.map((crew) => (
           <CrewListItem
             key={crew.id}
-            id={crew.id}
-            title={crew.title}
+            title={crew.name}
             category={crew.category}
-            content={crew.content}
+            content={crew.detail}
+            onClick={() => {
+              localStorage.setItem("groupId", crew.id);
+              navigate("/closed-crew/detail");
+            }}
           />
         ))}
       </ListContainer>

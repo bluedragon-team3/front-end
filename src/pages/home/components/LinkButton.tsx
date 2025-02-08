@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const LinkButton = ({ content }) => {
-  return <Button>{content}</Button>;
+const LinkButton = ({ content, onClick }) => {
+  return <Button onClick={onClick}>{content}</Button>;
 };
 
 export default LinkButton;

@@ -3,31 +3,26 @@ import { CrewListItem } from "../../components/crewListItem/CrewListItem";
 import styled from "styled-components";
 import { ToHomeButton } from "../../components/toHomeButton/ToHomeButton";
 import MyPageButton from "../../components/mypage/MyPageButton";
-import { OPENED_CREW_LIST } from "../../constants/constants";
+import { baseURL, OPENED_CREW_LIST } from "../../constants/constants";
 
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 export const OpenedCrew = () => {
-
-  //api연동
+  const navigate = useNavigate();
   const [crewList, setCrewList] = useState([]);
 
   useEffect(() => {
     axios
-    .get("")
-    .then((response) => {
-      setCrewList(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching crew list:", error);
-    });
-  },[]);
+      .get(`http://${baseURL}/group/`)
+      .then((response) => {
+        setCrewList(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching crew list:", error);
+      });
+  }, []);
 
-  // const handleCrewClick = (id) => {
-  //   navigate(`/detail/${id}`);  // 상세 페이지로 id 전달
-  // };
-////
   return (
     <Container>
       <Header>
@@ -39,10 +34,13 @@ export const OpenedCrew = () => {
         {crewList.map((crew) => (
           <CrewListItem
             key={crew.id}
-            id={crew.id}
-            title={crew.title}
+            title={crew.name}
             category={crew.category}
-            content={crew.content}
+            content={crew.detail}
+            onClick={() => {
+              localStorage.setItem("groupId", crew.id);
+              navigate("/opened-crew/apply");
+            }}
           />
         ))}
       </ListContainer>

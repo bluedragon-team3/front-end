@@ -1,34 +1,62 @@
-
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
-
-
+import { baseURL } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onIdChange = (e) => setId(e.target.value);
+  const onpasswordChange = (e) => setPassword(e.target.value);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`http://${baseURL}/user/login/`, {
+        signId: id,
+        password: password,
+      })
+      .then((res) => {
+        //console.log(res.data);
+        //유저 정보 로컬스토리지에 저장
+        //id, signId, name, studnetNumber
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("signId", res.data.signId);
+        localStorage.setItem("name", res.data.name);
+        localStorage.setItem("studentNumber", res.data.studentNumber);
+        navigate("/home");
+      })
+      .catch((error) => {
+        alert("로그인에 실패하셨습니다!!");
+      });
+  };
 
   return (
-    <div style = {{
+    <div
+      style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "70%"
-    }
-    }>
-    <Container>
+        height: "70%",
+      }}
+    >
+      <Container>
         <Header>
-        <Title>로그인</Title>
-
+          <Title>로그인</Title>
         </Header>
-      <Label>아이디</Label>
-      <Input type="text" />
+        <Label>아이디</Label>
+        <Input type="text" onChange={onIdChange} />
 
-      <Label>비밀번호</Label>
-      <Input type="password" />
-    
-      <Button>로그인</Button>
-    </Container>
+        <Label>비밀번호</Label>
+        <Input type="password" onChange={onpasswordChange} />
+
+        <Button onClick={onSubmit}>로그인</Button>
+      </Container>
     </div>
-
   );
 };
 
@@ -38,9 +66,6 @@ const Container = styled.div`
   border-radius: 20px;
   background: #fff;
   text-align: center;
-
-
-  
 `;
 
 const Title = styled.h2`
@@ -66,8 +91,6 @@ const Input = styled.input`
   margin-bottom: 10px;
 `;
 
-
-
 const Button = styled.button`
   width: 100%;
   padding: 10px;
@@ -85,5 +108,4 @@ const Header = styled.div`
   width: 100%;
   height: 300px;
   justify-content: center; /* 가운데 정렬 */
-
 `;

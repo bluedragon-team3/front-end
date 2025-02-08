@@ -1,38 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {CrewDetailCheck} from "../../../components/CrewDetailCheck"; // CrewDetailCheck 을 import
+import { CrewDetailCheck } from "../../../components/CrewDetailCheck"; // CrewDetailCheck 을 import
 import { BackArrow } from "../../../components/backArrow/BackArrow";
-
+import axios from "axios";
+import { baseURL } from "../../../constants/constants";
 
 export const CrewDetail = () => {
-    const navigate = useNavigate();
-    return (
-
+  const [crewDetail, setCrewDetail] = useState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    axios
+      .get(`http://${baseURL}/mypage/${localStorage.getItem("groupId")}/`)
+      .then((res) => {
+        console.log(res.data);
+        setCrewDetail(res.data);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+  return (
     <>
-            <Header>
-                <BackArrow />
-            </Header>
-            
-    <container>
+      <Header>
+        <BackArrow />
+      </Header>
+
+      <container>
         <CrewDetailCheck
-            title="소모임 제목"
-            isReviewed={false}
+          title={crewDetail?.name}
+          isReviewed={crewDetail?.isEnded} // Assuming the "isReviewed" property is part of the response
+          category={crewDetail?.category}
+          memberLimit={crewDetail?.peopleLimit}
+          startdate={crewDetail?.startDate}
+          finishdate={crewDetail?.finishDate}
+          description={crewDetail?.detail}
+          curriculum={crewDetail?.curriculum}
         />
-            <ButtonGroup>
-                <Button onClick={() => navigate("/study-end")}>스터디 종료</Button>
-                <Button onClick={() => navigate("/members")}>스터디원</Button>
-            </ButtonGroup>
-    </container>
-
+        {crewDetail?.owner.id === crewDetail?.id && (
+          <ButtonGroup>
+            <Button onClick={() => navigate("/mypage/crewdetail/write-review")}>
+              스터디 종료
+            </Button>
+            <Button onClick={() => navigate("/mypage/crewdetail/member")}>
+              스터디원
+            </Button>
+          </ButtonGroup>
+        )}
+      </container>
     </>
+  );
+};
 
-      
-    );
-    
-  };
-
-  const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,8 +63,7 @@ export const CrewDetail = () => {
   background-color: #f8f8f8;
 `;
 
-
-  const ButtonGroup = styled.div`
+const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
