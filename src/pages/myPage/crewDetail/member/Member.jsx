@@ -5,14 +5,6 @@ import { MemberItem } from "./components/memberItem";
 import axios from "axios";
 import { baseURL } from "../../../../constants/constants";
 
-/*const members = [
-  { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-  { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-  { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-  { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-  { id: "bowoon", name: "정보운", gender: "여", studentId: "20222222" },
-];*/
-
 export const Member = () => {
   const [members, setMembers] = useState([]);
 

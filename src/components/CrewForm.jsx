@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { baseURL } from "../constants/constants";
 
 export const CrewForm = ({ title, button1Text, button1Action }) => {
   const [crewName, setCrewName] = useState(""); // 소모임 이름
@@ -26,7 +27,7 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
     console.log("보낼 데이터:", formData); // 확인용
 
     try {
-      const response = await fetch("https://your-backend-api.com/crew", {
+      const response = await fetch(`${baseURL}/group/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,12 +51,21 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
     <Container>
       <Card>
         <Label>소모임 이름</Label>
-        <Input type="text" value={crewName} onChange={(e) => setCrewName(e.target.value)} />
+        <Input
+          type="text"
+          value={crewName}
+          onChange={(e) => setCrewName(e.target.value)}
+        />
         <FormRow>
-        <Label>카테고리</Label>
+          <Label>카테고리</Label>
         </FormRow>
-        <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="" disabled>선택하세요</option>
+        <CategorySelect
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="" disabled>
+            선택하세요
+          </option>
           <option value="study">스터디</option>
           <option value="hobby">취미</option>
           <option value="exercise">운동</option>
@@ -63,22 +73,45 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
         </CategorySelect>
 
         <FormRow>
-        <Label>인원 수 제한</Label>
-        <Input type="number" value={limit} onChange={(e) => setLimit(e.target.value)} />
+          <Label>인원 수 제한</Label>
+          <Input
+            type="number"
+            value={limit}
+            onChange={(e) => setLimit(e.target.value)}
+          />
         </FormRow>
-        
-        <FormRow>
-        <Label>소모임 기간</Label>
-        <Input type="text" placeholder="소모임 시작" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-        <Input type="text" placeholder="소모임 종료" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 
+        <FormRow>
+          <Label>소모임 기간</Label>
+          <Input
+            type="text"
+            placeholder="소모임 시작"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+          <Input
+            type="text"
+            placeholder="소모임 종료"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
         </FormRow>
 
         <Label>소모임 한줄 설명</Label>
-        <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <Input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
         <Label>커리큘럼</Label>
-        <textarea name="postContent" value={curriculum} onChange={(e) => setCurriculum(e.target.value)} rows={4} cols={40} />
+        <textarea
+          name="postContent"
+          value={curriculum}
+          onChange={(e) => setCurriculum(e.target.value)}
+          rows={4}
+          cols={40}
+        />
       </Card>
 
       <ButtonGroup>
@@ -104,7 +137,7 @@ const Container = styled.div`
   gap: 1rem;
   padding: 0 4rem;
   height: 85%;
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 `;
 
 const Card = styled.div`
@@ -129,8 +162,6 @@ const Label = styled.label`
   font-weight: bold;
   width: 350px;
 `;
-
-
 
 const Input = styled.input`
   width: 100%;

@@ -52,4 +52,9 @@ const Title = styled.p`
 
 const Category = styled.p`
   margin: 0;
+  width: 90%;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

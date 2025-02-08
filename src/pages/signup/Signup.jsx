@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { baseURL } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [studentId, setStudentId] = useState("");
   const [gender, setGender] = useState("");
@@ -20,20 +22,22 @@ export const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    let formData = new FormData();
-    formData.append("signId", signId);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("gender", gender);
-    formData.append("studentNumber", studentId);
     axios
-      .post(`${baseURL}/user/register`, formData)
+      .post(`http://${baseURL}/user/register/`, {
+        signId: signId,
+        email: email,
+        password: password,
+        name: name,
+        studentNumber: studentId,
+        sex: gender,
+      })
       .then((res) => {
         console.log(res.data);
         alert("회원가입에 성공하셨습니다.");
+        navigate("/login");
       })
       .catch((error) => {
+        console.log(error);
         alert("회원가입에 실패하셨습니다!!");
       });
   };

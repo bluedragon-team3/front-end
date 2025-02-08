@@ -30,4 +30,4 @@ export const OPENED_CREW_LIST = [
   { id: 6, title: "title7", category: "cate1", content: "설명" },
 ];
 
-export const baseURL = "";
+export const baseURL = "175.120.73.56:9090";

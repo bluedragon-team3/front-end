@@ -1,7 +1,11 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { baseURL } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,16 +15,20 @@ export const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    let formData = new FormData();
-    formData.append("signId", id);
-    formData.append("password", password);
-
     axios
-      .post(`${baseURL}/user/login`, formData)
+      .post(`http://${baseURL}/user/login/`, {
+        signId: id,
+        password: password,
+      })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         //유저 정보 로컬스토리지에 저장
         //id, signId, name, studnetNumber
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("signId", res.data.signId);
+        localStorage.setItem("name", res.data.name);
+        localStorage.setItem("studentNumber", res.data.studentNumber);
+        navigate("/home");
       })
       .catch((error) => {
         alert("로그인에 실패하셨습니다!!");
