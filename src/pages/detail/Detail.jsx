@@ -13,10 +13,14 @@ export const Detail = () => {
             <BackArrow />
             <Title>기록 열람</Title>
         </Header>
+        
+        <ContentWrapper>
         <CrewDetailCheck
             title="소모임 제목"
             isReviewed={true}
             />
+        </ContentWrapper>
+
             <ButtonGroup>
                 <Button onClick={() => navigate("/study-end")}>스터디 종료</Button>
                 <Button onClick={() => navigate("/members")}>스터디원</Button>
@@ -60,4 +64,8 @@ const Title = styled.p`
   width: 100%;
 
   font-size: 32px;
+`;
+
+const ContentWrapper = styled.div`
+  margin-top: 20px; /* Header와 CrewDetailCheck 사이의 간격 추가 */
 `;

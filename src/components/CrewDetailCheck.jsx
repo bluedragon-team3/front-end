@@ -44,13 +44,13 @@ const Container = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 0 4rem;
-  height: inherit;
-  background-color: #f8f8f8;
+  height: 70%;
+  background-color:rgb(255, 255, 255);
 `;
 
 const Card = styled.div`
   width: 300px;
-  height: 70%;
+  //height: 700px;
   align-items: center;
   padding: 20px;
   background-color: #c7f4ff;

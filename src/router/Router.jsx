@@ -8,7 +8,6 @@ import { MyPage } from "../pages/myPage/MyPage";
 import { ClosedCrew } from "../pages/closedCrew/ClosedCrew";
 import { OpenedCrew } from "../pages/openedCrew/OpenedCrew";
 import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
-import { Review } from "../pages/mypage/crewdetail/review/Review";
 import { Create } from "../pages/create/Create";
 import { Apply } from "../pages/openedCrew/apply/Apply";
 import { Detail } from "../pages/detail/Detail";
@@ -27,9 +26,8 @@ const router = createBrowserRouter([
       { path: "opened-crew", element: <OpenedCrew /> },
       { path: "home", element: <Home /> }, 
        { path: "signup", element: <Signup /> },
-      { path: "review", element: <Review />},
       { path: "create", element: <Create />},
-      { path: "detail", element: <Detail />},
+      { path: "detail", element : <Detail />},
 
       //바꿔야할 라우트
       { path: "crewdetail", element: <CrewDetail />},

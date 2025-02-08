@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {CrewDetailCheck} from "../../../components/CrewDetailCheck"; // CrewDetailCheck 을 import
+import { BackArrow } from "../../../components/backArrow/BackArrow";
 
 
 export const CrewDetail = () => {
@@ -9,6 +10,10 @@ export const CrewDetail = () => {
     return (
 
     <>
+            <Header>
+                <BackArrow />
+            </Header>
+            
     <container>
         <CrewDetailCheck
             title="소모임 제목"
@@ -51,7 +56,7 @@ const Button = styled.button`
   padding: 10px;
   margin: 0 5px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #173f41;
   color: white;
   font-size: 16px;
@@ -59,4 +64,11 @@ const Button = styled.button`
   &:hover {
     background-color: #145055;
   }
+`;
+
+const Header = styled.div`
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  padding: 20px 0;
 `;

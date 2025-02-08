@@ -51,8 +51,9 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
       <Card>
         <Label>소모임 이름</Label>
         <Input type="text" value={crewName} onChange={(e) => setCrewName(e.target.value)} />
-
+        <FormRow>
         <Label>카테고리</Label>
+        </FormRow>
         <CategorySelect value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="" disabled>선택하세요</option>
           <option value="study">스터디</option>
@@ -61,12 +62,17 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
           <option value="etc">기타</option>
         </CategorySelect>
 
+        <FormRow>
         <Label>인원 수 제한</Label>
         <Input type="number" value={limit} onChange={(e) => setLimit(e.target.value)} />
-
+        </FormRow>
+        
+        <FormRow>
         <Label>소모임 기간</Label>
         <Input type="text" placeholder="소모임 시작" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         <Input type="text" placeholder="소모임 종료" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+
+        </FormRow>
 
         <Label>소모임 한줄 설명</Label>
         <Input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
@@ -82,7 +88,13 @@ export const CrewForm = ({ title, button1Text, button1Action }) => {
   );
 };
 
-
+const FormRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -91,13 +103,13 @@ const Container = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 0 4rem;
-  height: inherit;
-  background-color: #f8f8f8;
+  height: 85%;
+  background-color:rgb(255, 255, 255);
 `;
 
 const Card = styled.div`
   width: 300px;
-  height: 70%;
+  height: 75%;
   align-items: center;
   padding: 20px;
   background-color: #c7f4ff;
@@ -115,7 +127,10 @@ const Label = styled.label`
   display: block;
   margin-top: 10px;
   font-weight: bold;
+  width: 350px;
 `;
+
+
 
 const Input = styled.input`
   width: 100%;
