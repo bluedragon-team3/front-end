@@ -4,6 +4,8 @@ import { Onboarding } from "../pages/onboarding/Onboarding";
 import { Signup } from "../pages/signup/Signup";
 import { Login } from "../pages/login/Login/";
 import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
+import { Review } from "../pages/mypage/crewdetail/review/Review";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,6 +14,7 @@ const router = createBrowserRouter([
       { path: "signup", element: <Signup /> },
       { path: "login", element: <Login />},
       { path: "crewdetail", element: <CrewDetail />},
+      { path: "review", element: <Review />},
     ],
   },
 ]);
