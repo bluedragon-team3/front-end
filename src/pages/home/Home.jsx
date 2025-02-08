@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyPageButton from "../../components/mypage/MyPageButton";
-import CrewBlock from "../../components/mypage/crewBlock/CrewBlock";
+import CrewBlock from "../../components/crewBlock/CrewBlock";
 import LinkButton from "./components/linkButton";
 
 const crewList = [
