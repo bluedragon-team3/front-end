@@ -6,6 +6,7 @@ import { Signup } from "../pages/signup/Signup";
 import { Login } from "../pages/login/login";
 import { MyPage } from "../pages/myPage/MyPage";
 import { ClosedCrew } from "../pages/closedCrew/ClosedCrew";
+import { OpenedCrew } from "../pages/openedCrew/OpenedCrew";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "home", element: <Home /> },
       { path: "mypage", element: <MyPage /> },
       { path: "closed-crew", element: <ClosedCrew /> },
+      { path: "opened-crew", element: <OpenedCrew /> },
     ],
   },
 ]);

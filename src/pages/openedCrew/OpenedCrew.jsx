@@ -3,18 +3,18 @@ import { CrewListItem } from "../../components/crewListItem/CrewListItem";
 import styled from "styled-components";
 import { ToHomeButton } from "../../components/toHomeButton/ToHomeButton";
 import MyPageButton from "../../components/mypage/MyPageButton";
-import { CLOSED_CREW_LIST } from "../../constants/constants";
+import { OPENED_CREW_LIST } from "../../constants/constants";
 
-export const ClosedCrew = () => {
+export const OpenedCrew = () => {
   return (
     <Container>
       <Header>
         <ToHomeButton />
         <MyPageButton />
       </Header>
-      <h1>기록열람</h1>
+      <h1>소모임 참여하기</h1>
       <ListContainer>
-        {CLOSED_CREW_LIST.map((crew) => (
+        {OPENED_CREW_LIST.map((crew) => (
           <CrewListItem
             key={crew.id}
             id={crew.id}
