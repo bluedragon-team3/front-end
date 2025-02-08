@@ -15,12 +15,13 @@
 ## 2. 프로젝트 클론 및 설치
 
 ```sh
+cd <PROJECT_NAME>
 # 레포지토리 클론
 git clone <REPOSITORY_URL>
-cd <PROJECT_NAME>
 
 # 패키지 설치
 npm install
+npm i styled-components
 ```
 
 ---
