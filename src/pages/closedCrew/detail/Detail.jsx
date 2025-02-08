@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CrewDetailCheck } from "../../../components/CrewDetailCheck";
@@ -7,8 +7,9 @@ import { BackArrow } from "../../../components/backArrow/BackArrow";
 import axios from "axios";
 import { baseURL } from "../../../constants/constants";
 
-export const Apply = () => {
+export const Detail = () => {
   const [crewDetails, setCrewDetails] = useState();
+  const [content, setContent] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,39 +20,28 @@ export const Apply = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setCrewDetails(response.data); // Set the fetched crew details
       })
       .catch((error) => {
         console.error("Error fetching crew details:", error);
       });
-  }, []);
 
-  const handleSubmit = () => {
-    const formData = new URLSearchParams();
-    formData.append("userId", 16);
     axios
-      .post(
-        `http://${baseURL}/group/${localStorage.getItem("groupId")}/`,
-        formData,
-        { headers: { "Content-Type": "application/json" } } // 요청 헤더
-      )
+      .get(`http://${baseURL}/review/${localStorage.getItem("groupId")}/`)
       .then((response) => {
         console.log(response.data);
-        alert("신청에 성공하셨습니다");
+        setContent(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching crew details:", error);
-        alert("신청에 실패하셨습니다");
+        alert("ERROR", error);
       });
-    navigate("/home");
-  };
+  }, []);
 
   return (
     <>
       <Header>
         <BackArrow />
-        <Title>소모임 참여하기</Title>
+        <Title>기록 열람</Title>
       </Header>
 
       <ContentWrapper>
@@ -64,17 +54,15 @@ export const Apply = () => {
           finishdate={crewDetails?.finishDate}
           description={crewDetails?.detail}
           curriculum={crewDetails?.curriculum}
+          review={content.map((each) => {
+            return each.content;
+          })}
         />
       </ContentWrapper>
 
       <ButtonGroup>
-        <Button
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          신청하기
-        </Button>
+        <Button onClick={() => navigate("/study-end")}>스터디 종료</Button>
+        <Button onClick={() => navigate("/members")}>스터디원</Button>
       </ButtonGroup>
     </>
   );
@@ -83,13 +71,11 @@ export const Apply = () => {
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
-  align-items: center;
-  //width: 300px;
+  margin-top: 20px;
 `;
 const Button = styled.button`
   flex: 1;
-  //width: 50px;
+  width: 140px;
   height: 50px;
   padding: 10px;
   margin: 0 5px;
