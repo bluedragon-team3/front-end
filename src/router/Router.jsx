@@ -11,30 +11,73 @@ import { CrewDetail } from "../pages/mypage/crewdetail/CrewDetail";
 import { Create } from "../pages/create/Create";
 import { Apply } from "../pages/openedCrew/apply/Apply";
 import { Detail } from "../pages/detail/Detail";
+import { Member } from "../pages/myPage/crewDetail/member/Member";
+import { WriteReview } from "../pages/myPage/crewDetail/writeReview/WriteReview";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "", element: <Onboarding /> },
-      { path: "signup", element: <Signup /> },
-      { path: "login", element: <Login /> },
-      { path: "home", element: <Home /> },
-      { path: "mypage", element: <MyPage /> },
-      { path: "closed-crew", element: <ClosedCrew /> },
-      { path: "opened-crew", element: <OpenedCrew /> },
-      { path: "home", element: <Home /> }, 
-       { path: "signup", element: <Signup /> },
-      { path: "create", element: <Create />},
-      { path: "detail", element : <Detail />},
+      {
+        path: "",
+        element: <Onboarding />,
+      },
 
-      //바꿔야할 라우트
-      { path: "crewdetail", element: <CrewDetail />},
-      { path: "apply", element: <Apply />},
+      {
+        path: "signup",
+        element: <Signup />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
 
+      {
+        path: "home",
+        element: <Home />,
+      },
+
+      {
+        path: "create",
+        element: <Create />,
+      },
+
+      {
+        path: "closed-crew",
+        element: <ClosedCrew />,
+      },
+      {
+        path: "closed-crew/detail",
+        element: <Detail />,
+      },
+
+      {
+        path: "opened-crew",
+        element: <OpenedCrew />,
+      },
+      {
+        path: "opened-crew/apply",
+        element: <Apply />,
+      },
+
+      {
+        path: "mypage",
+        element: <MyPage />,
+      },
+      {
+        path: "mypage/crewdetail",
+        element: <CrewDetail />,
+      },
+      {
+        path: "mypage/crewdetail/member",
+        element: <Member />,
+      },
+      {
+        path: "mypage/crewdetail/write-review",
+        element: <WriteReview />,
+      },
     ],
-
   },
 ]);
 
