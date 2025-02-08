@@ -1,16 +1,7 @@
-import styled from "styled-components";
+import { Outlet } from "react-router-dom";
 
 function App() {
-  return (
-    <div>
-      <Title>메인페이지</Title>
-      <p>이건 내용인데요</p>
-    </div>
-  );
+  return <Outlet />;
 }
 
 export default App;
-
-const Title = styled.div`
-  color: red;
-`;
