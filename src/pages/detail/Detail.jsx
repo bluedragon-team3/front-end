@@ -11,7 +11,7 @@ export const Detail = () => {
     <>
         <Header>
             <BackArrow />
-            <Label>기록 열람</Label>
+            <Title>기록 열람</Title>
         </Header>
         <CrewDetailCheck
             title="소모임 제목"
@@ -55,8 +55,9 @@ const Header = styled.div`
   width: 100%;
   padding: 20px 0;
 `;
-const Label = styled.label`
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
+const Title = styled.p`
+  margin: 0;
+  width: 100%;
+
+  font-size: 32px;
 `;
