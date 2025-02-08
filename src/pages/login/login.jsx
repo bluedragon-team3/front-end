@@ -46,7 +46,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const Signin = () => {
+export const login = () => {
 
   return (
     <Container>
@@ -62,8 +62,3 @@ export const Signin = () => {
   );
 };
 
-//export default SignupForm;
-
-// export const Signup = () => {
-//     return <div>메롱</div>
-// }
